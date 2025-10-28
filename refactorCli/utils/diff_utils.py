@@ -5,6 +5,7 @@ GREEN = "\033[92m"
 RESET = "\033[0m"
 CYAN = "\033[96m"
 
+
 def generate_diff(original: str, modified: str) -> str:
     """Generate a unified diff with colored +/− lines."""
     diff = difflib.unified_diff(

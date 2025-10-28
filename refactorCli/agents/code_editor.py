@@ -4,7 +4,7 @@ from refactorCli.utils.diff_utils import generate_diff
 
 
 class CodeEditorAgent:
-    def __init__(self, model:str="gpt-4o-mini"):
+    def __init__(self, model: str = "gpt-4o-mini"):
         self.llm_client = Client(model=model)
 
     def review_folder(self, folder: str, prompt: str):
@@ -26,7 +26,9 @@ class CodeEditorAgent:
             print("\n--- Suggested Changes ---")
             print(diff)
 
-            decision = input("\nApply changes? [y]es / [n]o / [s]kip all: ").strip().lower()
+            decision = (
+                input("\nApply changes? [y]es / [n]o / [s]kip all: ").strip().lower()
+            )
             if decision == "y":
                 write_file(filepath, suggestion)
                 print(f"Changes applied to {filepath}")

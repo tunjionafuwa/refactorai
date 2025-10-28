@@ -13,12 +13,11 @@ Code: {code}
 Find issues and suggest corrected version of this code
 """
 
+
 class Client:
     def __init__(self, model: str = "gpt-4o-mini", temperature: float = 0.2) -> None:
         self.llm = init_chat_model(
-            model=model,
-            model_provider="openai",
-            temperature=temperature
+            model=model, model_provider="openai", temperature=temperature
         )
 
     def review_code(self, code: str, filepath: str, prompt: str) -> str:
@@ -26,7 +25,9 @@ class Client:
         messages: list[BaseMessage] = [
             SystemMessage(content="You are an expert Python code reviewer and editor."),
             HumanMessage(
-                content=HUMAN_MESSAGE.format(filepath=filepath, prompt=prompt, code=code)
+                content=HUMAN_MESSAGE.format(
+                    filepath=filepath, prompt=prompt, code=code
+                )
             ),
         ]
         response = self.llm.invoke(messages)
@@ -44,7 +45,9 @@ def extract_code_blocks(text: str) -> str:
     # Fallback: if no fenced code, try to heuristically find code-looking lines
     lines = text.splitlines()
     code_lines = [
-        line for line in lines
-        if line.strip() and not line.strip().startswith(("Here", "Explanation", "# Changes"))
+        line
+        for line in lines
+        if line.strip()
+        and not line.strip().startswith(("Here", "Explanation", "# Changes"))
     ]
     return "\n".join(code_lines).strip()
