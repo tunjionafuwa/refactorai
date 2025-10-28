@@ -1,3 +1,4 @@
+from pathlib import Path
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage
 import re
@@ -20,7 +21,7 @@ class Client:
             model=model, model_provider="openai", temperature=temperature
         )
 
-    def review_code(self, code: str, filepath: str, prompt: str) -> str:
+    def review_code(self, code: str, filepath: str | Path, prompt: str) -> str:
         """Send code to LLM to identify errors and suggest corrections."""
         messages: list[BaseMessage] = [
             SystemMessage(content="You are an expert Python code reviewer and editor."),
