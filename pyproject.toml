@@ -1,0 +1,15 @@
+[project]
+name = "refactorai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=1.0.2",
+    "langchain-anthropic>=1.0.0",
+    "langchain-community>=0.4",
+    "langchain-mcp-adapters>=0.1.11",
+    "langchain-openai>=1.0.1",
+    "langgraph>=1.0.1",
+    "langgraph-cli[inmem]>=0.4.4",
+]
