@@ -15,14 +15,15 @@ def generate_diff(original: str, modified: str) -> str:
         tofile="suggested",
     )
 
-    colored_lines = []
+    colored_lines: list[str] = []
     for line in diff:
         if line.startswith("+") and not line.startswith("+++"):
-            colored_lines.append(GREEN + line + RESET)
+            new_line = GREEN + line + RESET
         elif line.startswith("-") and not line.startswith("---"):
-            colored_lines.append(RED + line + RESET)
+            new_line = RED + line + RESET 
         elif line.startswith("@@"):
-            colored_lines.append(CYAN + line + RESET)
+            new_line = CYAN + line + RESET
         else:
-            colored_lines.append(line)
+            new_line = line
+        colored_lines.append(new_line)
     return "".join(colored_lines)

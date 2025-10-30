@@ -13,10 +13,11 @@ def main():
     parser.add_argument("folder", help="Path to the folder containing Python files.")
     parser.add_argument(
         "--prompt",
+        "-p",
         help="Custom review prompt.",
         default="Find and correct bugs or issues.",
     )
-    parser.add_argument("--model", help="LLM model name", default="gpt-4o-mini")
+    parser.add_argument("--model", "-m", help="LLM model name", default="gpt-4o-mini")
 
     args = parser.parse_args()
 
@@ -24,5 +25,5 @@ def main():
     agent.review_folder(args.folder, args.prompt)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
